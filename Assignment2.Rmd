@@ -22,12 +22,20 @@ testTrainSplit <- .20
 Algorithmic Trading is the approach by which, trading of stocks is executed with predefined set of rules or rules generated using sophisticated algorithms. The approach here is to make use of the evolutionary techniques such as Genetic Programming** to predict the price of a stock and then with the help of several technical indicators like moving averages** to generate trading rules in such a way to maximise the profit over a period.
 
 The approach used here uses a sliding window approach and Grammatical Evolution to generate a formula that fits the trend of the stock and using the same to predict the future values of the stock. The stock values will be predicted for a certain period and used to apply the trading rules implemented using the technical indicators such as Moving Averages, RSI.** which would give the logic for decision points for taking positions in the stock movement (buy, sell, hold or long or short)**
+  
+Select a literature to quote in the background **
+Mention the difference in approach we are using here **
+
+** => Pending works
 
 
 # Dataset Chosen
 
 The stock selected for analysis is: `r stock`.
 Period for which preliminary analysis done is from `r fromDate` to `r toDate`
+
+Why did we choose this dataset? ** 
+Why did we choose the date range? ** 
 
 ```{r 2 Dataset, echo=FALSE, eval= TRUE}
 # Read Data
@@ -41,4 +49,21 @@ dataVolume <- NFLX$NFLX.Volume
 chartSeries(NFLX)
 ```
 
+# Trading Strategy
 
+Add a block diagram of the strategy **
+Explaination of the block diagram **
+=> Details of your trading strategy and any specific decisions about the representation, fitness function, model configuration etc. along with details about implementation, any key parameters  etc... [quoted from assignment doc]
+
+# Performance Evaluation on Training Data
+=> Comments on the expected profit vs actual profit
+=> Comments on the error of prediction and rules getting executed
+
+# Performance on Backtesting
+=> Comments on profit gained (mention reasons if possible)
+=> Comments on error in prediction and rule execution
+=> Comparison with results from Training
+
+# Performance Comparison with Literature Selected
+=> Comparison of performance of training data using literature and our model
+=> Comparison of back testing using literature and our model
