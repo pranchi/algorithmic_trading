@@ -1,0 +1,44 @@
+---
+title: 'Algorithmic Trading'
+author: 'Francis Sunny & Geremy Bantug'
+output: pdf_document
+---
+
+```{r 1. setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(gramEvol)
+library(quantmod)
+options("getSymbols.warning4.0"=FALSE)
+
+stock <- 'NFLX'
+fromDate <- '2017-01-01'
+toDate <- '2017-02-01'
+windowSize <- 20
+testTrainSplit <- .20
+```
+
+# Background of the Approach
+
+Algorithmic Trading is the approach by which, trading of stocks is executed with predefined set of rules or rules generated using sophisticated algorithms. The approach here is to make use of the evolutionary techniques such as Genetic Programming** to predict the price of a stock and then with the help of several technical indicators like moving averages** to generate trading rules in such a way to maximise the profit over a period.
+
+The approach used here uses a sliding window approach and Grammatical Evolution to generate a formula that fits the trend of the stock and using the same to predict the future values of the stock. The stock values will be predicted for a certain period and used to apply the trading rules implemented using the technical indicators such as Moving Averages, RSI.** which would give the logic for decision points for taking positions in the stock movement (buy, sell, hold or long or short)**
+
+
+# Dataset Chosen
+
+The stock selected for analysis is: `r stock`.
+Period for which preliminary analysis done is from `r fromDate` to `r toDate`
+
+```{r 2 Dataset, echo=FALSE, eval= TRUE}
+# Read Data
+getSymbols(stock, src="yahoo", from=fromDate, to=toDate, freq="daily")
+dataAdjusted <- NFLX$NFLX.Adjusted
+dataOpen <- NFLX$NFLX.Open
+dataClose <- NFLX$NFLX.Close
+dataLow <- NFLX$NFLX.Low
+dataHigh <- NFLX$NFLX.High
+dataVolume <- NFLX$NFLX.Volume
+chartSeries(NFLX)
+```
+
+
