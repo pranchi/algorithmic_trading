@@ -37,16 +37,17 @@ Period for which preliminary analysis done is from `r fromDate` to `r toDate`
 Why did we choose this dataset? ** 
 Why did we choose the date range? ** 
 
-```{r 2 Dataset, echo=FALSE, eval= TRUE}
+```{r 2 Dataset, echo=FALSE, eval= TRUE, fig.dim=c(8,4)}
 # Read Data
-getSymbols(stock, src="yahoo", from=fromDate, to=toDate, freq="daily")
-dataAdjusted <- NFLX$NFLX.Adjusted
-dataOpen <- NFLX$NFLX.Open
-dataClose <- NFLX$NFLX.Close
-dataLow <- NFLX$NFLX.Low
-dataHigh <- NFLX$NFLX.High
-dataVolume <- NFLX$NFLX.Volume
-chartSeries(NFLX)
+stockDataSet <- getSymbols(stock, src="yahoo", from=fromDate, to=toDate, freq="daily")
+stockData <- get(stockDataSet)
+dataAdjusted <- stockData$NFLX.Adjusted
+dataOpen <- stockData$NFLX.Open
+dataClose <- stockData$NFLX.Close
+dataLow <- stockData$NFLX.Low
+dataHigh <- stockData$NFLX.High
+dataVolume <- stockData$NFLX.Volume
+chartSeries(stockData)
 ```
 
 # Trading Strategy

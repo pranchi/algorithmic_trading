@@ -1,5 +1,6 @@
 library(quantmod)
 library(gramEvol)
+library(TTR)
 
 stock <- 'NFLX'
 fromDate <- '2017-01-01'
@@ -10,6 +11,8 @@ testTrainSplit <- .20
 # Read Data
 getSymbols(stock, src="yahoo", from=fromDate, to=toDate, freq="daily")
 chartSeries(NFLX)
+addSMA(n=3,on=1,col = "blue")
+addSMA(n=6,on=1,col = "red")
 dataAdjusted <- NFLX$NFLX.Adjusted
 dataOpen <- NFLX$NFLX.Open
 dataClose <- NFLX$NFLX.Close
@@ -82,11 +85,11 @@ dataPrediction <- function(data){
 }
 adjustedPredictions <- dataPrediction(dataAdjusted)
 openPredictions <- dataPrediction(dataOpen)
+closePredictions <- dataPrediction(dataClose)
+
+predictions <- data.frame(cbind(openPredictions, closePredictions, adjustedPredictions))
+sma_4 <- SMA(adjustedPredictions,n=4)
+sma_3 <- SMA(adjustedPredictions,n=3)
 
 
-predictions <- data.frame(cbind(adjustedPredictions, openPredictions))
-# prediction for 2017-02-01 to 2017-02-06 in variety_predictions
 
-# getSymbols(stock, src="yahoo", from=toDate, to='2017-02-10', freq="daily")
-
-# b <- cbind(head(NFLX$NFLX.Adjusted,5), variety_predictions)
